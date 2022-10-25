@@ -14,7 +14,7 @@ class _ScreenTestScreenState extends State<ScreenTestScreen> {
     return Scaffold(
       body: Container(
         child: Center(
-          child: Text("sdfsafsdfsdx"),
+          child: Text("Tharindu"),
         ),
       ),
     );
