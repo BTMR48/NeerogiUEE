@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "941051089771",
+    "project_id": "ueenerogi",
+    "storage_bucket": "ueenerogi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941051089771:android:251e985d81759d6630322e",
+        "android_client_info": {
+          "package_name": "com.example.neerogi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941051089771-e8116lsjqdp5mvqbb3hplju59gai6so2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9VEPPBw9jOfbihUUD5sUkMR6g0h6HcRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941051089771-e8116lsjqdp5mvqbb3hplju59gai6so2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
