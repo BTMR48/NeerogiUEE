@@ -85,8 +85,9 @@ class _ViewArticlesScreensState extends State<ViewArticlesScreens> {
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             ViewOneArticleScreen(
-                                                                // id: article.id,
-                                                                )));
+                                                              id: data[index]
+                                                                  .id,
+                                                            )));
                                               },
                                             ))
                                       ],
