@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../articlesModel.dart';
+
 class ViewOneArticleScreen extends StatefulWidget {
   const ViewOneArticleScreen({Key? key, required this.id}) : super(key: key);
   final String id;
@@ -10,18 +12,29 @@ class ViewOneArticleScreen extends StatefulWidget {
 }
 
 class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
-  // // Articles OneArticle = Articles();
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   FirebaseFirestore.instance
-  //       .collection("articles")
-  //       .doc(id)
-  //       .get()
-  //       .then((value) {
-  //     OneArticle = Articles.formMap(value.data());
-  //     setState(() {});
+  Articles? oneArticle;
+  bool loading = false;
+
+  @override
+  initState() {
+    super.initState();
+    loading = true;
+    // getArticle();
+  }
+
+  // Future<void> getArticle() async {
+  //   final id = widget.id;
+  //   final reference = FirebaseFirestore.instance.doc('articles/$id');
+  //   final snapshot = reference.get();
+  //   final result =
+  //       await snapshot.then((snap) => Articles.fromJson(
+  //           snap.data()));
+  //   print('result is ====> $result');
+  //   setState(() {
+  //     oneArticle = result;
+  //     loading = false;
   //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
