@@ -8,6 +8,7 @@ import '../imageupload/show_upload.dart';
 import '../model/user_model.dart';
 import 'Articles/Admin/add_articles.dart';
 import 'Articles/Admin/view_articles.dart';
+import 'ScreenTest/screenTest_screen.dart';
 import 'login.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -113,6 +114,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context) => ViewArticlesScreens()));
                 },
                 child: Text('ViewArticlesScreens'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ScreenTestScreen()));
+                },
+                child: Text('ScreenTestScreens'),
               ),
             ],
           ),
