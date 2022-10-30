@@ -181,7 +181,7 @@ class _ScreenTestScreenState extends State<ScreenTestScreen> {
     '0 - 25,000ත්',
     '25,000 - 100,000',
     '100,000 - 500,000',
-    '500,000 ට වැඩි ',
+    '500,000 ට වැඩි',
   ];
 
   //IF "dropdownValueMembers" is empty pass "which" word as a initial value if al ready selected then pass the shared preference value
@@ -643,12 +643,8 @@ class _ScreenTestScreenState extends State<ScreenTestScreen> {
                           ),
                           onPressed: () {
                             onsend();
+                            marks();
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MarksScreen()),
-                            );
                             _saveData(dropdownValueMembers!);
                             _saveDataNumbers(dropdownValueNumber!);
                             _saveDataEducationM(dropdownValueEducationM!);
@@ -683,5 +679,22 @@ class _ScreenTestScreenState extends State<ScreenTestScreen> {
     });
     //.whenComplete(() =>
     // showSnackBar("Voice uploaded successful", Duration(seconds: 2)));
+  }
+
+  void marks() {
+    var marks = 0;
+    if (dropdownValueMembers == '1 ක්') marks += 10;
+    if (dropdownValueNumber == '1 වෙනි') marks += 10;
+    if (dropdownValueEducationM == 'පශ්චාත් උපාධි') marks += 10;
+    if (dropdownValueEducationF == 'පශ්චාත් උපාධි') marks += 10;
+    if (dropdownValueIncome == '500,000 ට වැඩි') marks += 10;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => MarksScreen(
+                marks: marks,
+              )),
+    );
   }
 }

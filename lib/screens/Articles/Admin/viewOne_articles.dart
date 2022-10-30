@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,22 +20,22 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
   initState() {
     super.initState();
     loading = true;
-    // getArticle();
+    getArticle();
   }
 
-  // Future<void> getArticle() async {
-  //   final id = widget.id;
-  //   final reference = FirebaseFirestore.instance.doc('articles/$id');
-  //   final snapshot = reference.get();
-  //   final result =
-  //       await snapshot.then((snap) => Articles.fromJson(
-  //           snap.data()));
-  //   print('result is ====> $result');
-  //   setState(() {
-  //     oneArticle = result;
-  //     loading = false;
-  //   });
-  // }
+  Future<void> getArticle() async {
+    final id = widget.id;
+    final reference = FirebaseFirestore.instance.doc('articles/$id');
+    final snapshot = reference.get();
+
+    final result = await snapshot.then(
+        (snap) => snap.data() == null ? null : Articles.fromJson(snap.data()!));
+    print('result is ====> $result');
+    setState(() {
+      oneArticle = result;
+      loading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +45,21 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
     return Scaffold(
       body: Column(
         children: [
-          // Image.network(
-          //   OneArticle.url,
-          //   height: 30,
-          //   fit: BoxFit.cover,
-          // ),
-          // Text(OneArticle.topic,
-          //     style: const TextStyle(
-          //         fontSize: 20,
-          //         color: Colors.black54,
-          //         fontWeight: FontWeight.w500)),
-          // Text(OneArticle.description,
-          //     style: const TextStyle(
-          //         fontSize: 20,
-          //         color: Colors.black54,
-          //         fontWeight: FontWeight.w500)),
+          Image.network(
+            oneArticle!.url,
+            height: 30,
+            fit: BoxFit.cover,
+          ),
+          Text(oneArticle!.topic,
+              style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w500)),
+          Text(oneArticle!.description,
+              style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w500)),
         ],
       ),
     );
