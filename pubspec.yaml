@@ -45,6 +45,7 @@ dependencies:
   path_provider: ^2.0.2
   shared_preferences: ^2.0.15
   snack: ^2.0.0
+  hexcolor: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,8 @@ flutter:
     - images/image2.jpg
     - images/image3.jpg
     - images/background1.jpg
+    - images/au.png
+    - images/ni.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
