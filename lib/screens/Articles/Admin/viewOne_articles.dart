@@ -43,24 +43,28 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Column(
-        children: [
-          Image.network(
-            oneArticle!.url,
-            height: 30,
-            fit: BoxFit.cover,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.network(
+                oneArticle!.url,
+                height: 30,
+                fit: BoxFit.cover,
+              ),
+              Text(oneArticle!.topic,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500)),
+              Text(oneArticle!.description,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500)),
+            ],
           ),
-          Text(oneArticle!.topic,
-              style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w500)),
-          Text(oneArticle!.description,
-              style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w500)),
-        ],
+        ),
       ),
     );
   }
