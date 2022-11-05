@@ -1,6 +1,8 @@
 class Config {
   static const app_background = 'images/background1.jpg';
   static const article_background = 'images/image.jpg';
+  static const app_au = 'images/au.png';
+  static const app_ni = 'images/ni.png';
   //Screen test questions
   static const app_Screentestquestion1 = 'ළමයා දිනකට කොච්චර වචන පවසනවා ද?';
   static const app_Screentestquestion2 =

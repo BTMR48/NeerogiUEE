@@ -48,6 +48,7 @@ dependencies:
   hexcolor: ^3.0.1
   google_fonts: ^3.0.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,6 +79,8 @@ flutter:
     - images/image2.jpg
     - images/image3.jpg
     - images/background1.jpg
+    - images/au.png
+    - images/ni.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
