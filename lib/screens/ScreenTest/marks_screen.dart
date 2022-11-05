@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../utils/config.dart';
+import '../home_screen.dart';
 
 class MarksScreen extends StatefulWidget {
   final int marks;
@@ -17,6 +18,7 @@ class _MarksScreenState extends State<MarksScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     print(widget.marks);
     return Scaffold(
       body: Container(
@@ -110,11 +112,33 @@ class _MarksScreenState extends State<MarksScreen> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          child: result(),
-                                        )
                                       ],
                                     ),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.2,
+                                  ),
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      height: height * 0.3,
+                                      width: width * 0.8,
+                                      child: result(),
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.redAccent),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomeScreen()));
+                                    },
+                                    child: Text("ස්තූතියී.."),
                                   ),
                                 ],
                               ),
@@ -134,6 +158,25 @@ class _MarksScreenState extends State<MarksScreen> {
   }
 
   result() {
-    if (widget.marks >= 3) {}
+    if (widget.marks < 30) {
+      return SizedBox(
+        child: Container(
+          alignment: Alignment.center,
+          child: Center(
+            child: Column(
+              children: [Image(image: AssetImage(Config.app_au))],
+            ),
+          ),
+        ),
+      );
+    } else {
+      return SizedBox(
+        child: Center(
+          child: Column(
+            children: [Image(image: AssetImage(Config.app_ni))],
+          ),
+        ),
+      );
+    }
   }
 }
