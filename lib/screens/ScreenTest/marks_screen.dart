@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/config.dart';
+
 class MarksScreen extends StatefulWidget {
   final int marks;
 
@@ -15,7 +17,35 @@ class _MarksScreenState extends State<MarksScreen> {
   Widget build(BuildContext context) {
     print(widget.marks);
     return Scaffold(
-      body: Container(),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(Config.app_background), fit: BoxFit.fill),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: ListTile(
+                      leading: GestureDetector(
+                        child: Icon(
+                          Icons.arrow_back_ios_new_sharp,
+                          color: Colors.black,
+                          size: 24.0,
+                        ),
+                        onTap: () => Navigator.pop(context),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Card()
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
