@@ -49,7 +49,7 @@ class _ViewArticlesScreensState extends State<ViewArticlesScreens> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              "images/logo.png"
+              "images/image.png"
             )
           )
         ),
