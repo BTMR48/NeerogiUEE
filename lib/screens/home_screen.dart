@@ -8,6 +8,8 @@ import '../imageupload/show_upload.dart';
 import '../model/user_model.dart';
 import 'Articles/Admin/add_articles.dart';
 import 'Articles/Admin/view_articles.dart';
+import 'Question/Admin/addQuestion.dart';
+import 'Question/Admin/viewQuestion.dart';
 import 'ScreenTest/screenTest_screen.dart';
 import 'login.dart';
 
@@ -121,6 +123,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context) => ScreenTestScreen()));
                 },
                 child: Text('ScreenTestScreens'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ViewQuestionScreens()));
+                },
+                child: Text('questions'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddQuestionScreen()));
+                },
+                child: Text('AddQuestionScreen'),
               ),
             ],
           ),
