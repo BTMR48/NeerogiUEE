@@ -44,62 +44,78 @@ class _ViewArticlesScreensState extends State<ViewArticlesScreens> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              //chip words
-              children: <Widget>[
-                const SizedBox(height: 10),
-                SizedBox(
-                    width: width * 0.94,
-                    height: height * 0.90,
-                    child: FutureBuilder<List<Articles>>(
-                        future: fetchRecords(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else {
-                            List<Articles> data = snapshot.data ?? [];
-
-                            return ListView.builder(
-                                itemCount: data.length,
-                                itemBuilder: (context, index) {
-                                  return (SizedBox(
-                                    height: 100,
-                                    child: Column(
-                                      children: <Widget>[
-                                        ListTile(
-                                            leading: Image.network(
-                                              data[index].url,
-                                              height: 30,
-                                              fit: BoxFit.cover,
-                                            ),
-                                            title: Text(data[index].topic),
-                                            subtitle:
-                                                Text(data[index].description),
-                                            trailing: ElevatedButton(
-                                              child: Text('View'),
-                                              onPressed: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ViewOneArticleScreen(
-                                                              id: data[index]
-                                                                  .id,
-                                                            )));
-                                              },
-                                            ))
-                                      ],
-                                    ),
-                                  ));
-                                });
-                          }
-                        }))
-              ],
-            ),
+      
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              "images/logo.png"
+            )
+          )
+        ),
+        child: SafeArea(
+          child: Column(
+            
+            children: [
+              SingleChildScrollView(
+              
+                child: Column(
+                  //chip words
+                  children: <Widget>[
+                    const SizedBox(height: 10),
+                    SizedBox(
+                        
+                        width: width * 0.94,
+                        height: height * 0.90,
+                        child: FutureBuilder<List<Articles>>(
+                            
+                            future: fetchRecords(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else {
+                                List<Articles> data = snapshot.data ?? [];
+          
+                                return ListView.builder(
+                                    itemCount: data.length,
+                                    itemBuilder: (context, index) {
+                                      return (SizedBox(
+                                        height: 100,
+                                        child: Column(
+                                          children: <Widget>[
+                                            ListTile(
+                                                leading: Image.network(
+                                                  data[index].url,
+                                                  height: 30,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                title: Text(data[index].topic),
+                                                subtitle:
+                                                    Text(data[index].description),
+                                                trailing: ElevatedButton(
+                                                  child: Text('View'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).push(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                ViewOneArticleScreen(
+                                                                  id: data[index]
+                                                                      .id,
+                                                                )));
+                                                  },
+                                                ))
+                                          ],
+                                        ),
+                                      ));
+                                    });
+                              }
+                            }))
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
