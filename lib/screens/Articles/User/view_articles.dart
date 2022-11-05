@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neerogi/screens/Articles/Admin/add_articles.dart';
 import 'package:neerogi/screens/Articles/Admin/viewOne_articles.dart';
 import 'package:neerogi/screens/Articles/ArticleIntroScreen.dart';
 import '../../../utils/config.dart';
@@ -50,7 +49,6 @@ class _ViewArticlesScreensState extends State<ViewArticlesScreens> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: HexColor('#00FFFF').withOpacity(0.4),
@@ -68,28 +66,20 @@ class _ViewArticlesScreensState extends State<ViewArticlesScreens> {
           ),
         ),
         title: Text(
-          "Articles",
+          "Articles - ලිපි",
           style: h2Style.copyWith(color: Color.fromARGB(255, 12, 63, 112)),
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.add,
-              color: Color.fromARGB(255, 3, 47, 113),
-            ),
-            onPressed: () {
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => AddArticleScreen()),
-            );
-            },
-          )
-        ],
         iconTheme: IconThemeData(color: Color.fromARGB(255, 12, 63, 112)),
       ),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Config.article_background),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
