@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/config.dart';
 import '../Parent/viewOneQuestion.dart';
 import '../questionModel.dart';
 
@@ -42,55 +43,88 @@ class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              //chip words
-              children: <Widget>[
-                const SizedBox(height: 10),
-                SizedBox(
-                    width: width * 0.94,
-                    height: height * 0.90,
-                    child: FutureBuilder<List<Questions>>(
-                        future: fetchRecords(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else {
-                            List<Questions> data = snapshot.data ?? [];
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(Config.app_background), fit: BoxFit.fill),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Questions",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.black,
 
-                            return ListView.builder(
-                                itemCount: data.length,
-                                itemBuilder: (context, index) {
-                                  return (SizedBox(
-                                    height: 100,
-                                    child: Column(
-                                      children: <Widget>[
-                                        ListTile(
-                                            title: Text(data[index].question),
-                                            trailing: ElevatedButton(
-                                              child: Text('View'),
-                                              onPressed: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ViewOneQuestionsScreen(
-                                                              id: data[index]
-                                                                  .id,
-                                                            )));
-                                              },
-                                            ))
-                                      ],
-                                    ),
-                                  ));
-                                });
-                          }
-                        }))
-              ],
+                      decorationColor: Colors.redAccent,
+                      // fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                      width: width * 0.94,
+                      height: height * 0.95,
+                      child: FutureBuilder<List<Questions>>(
+                          future: fetchRecords(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else {
+                              List<Questions> data = snapshot.data ?? [];
+
+                              return ListView.builder(
+                                  itemCount: data.length,
+                                  itemBuilder: (context, index) {
+                                    return (SizedBox(
+                                      height: 100,
+                                      child: Card(
+                                        color: Colors.white.withOpacity(0.8),
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            color: Colors.greenAccent,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                        ),
+                                        child: Column(
+                                          children: <Widget>[
+                                            ListTile(
+                                                title:
+                                                    Text(data[index].question),
+                                                trailing: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 30),
+                                                  child: ElevatedButton(
+                                                    child: Text('View'),
+                                                    onPressed: () {
+                                                      Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  ViewOneQuestionsScreen(
+                                                                    id: data[
+                                                                            index]
+                                                                        .id,
+                                                                  )));
+                                                    },
+                                                  ),
+                                                ))
+                                          ],
+                                        ),
+                                      ),
+                                    ));
+                                  });
+                            }
+                          }))
+                ],
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

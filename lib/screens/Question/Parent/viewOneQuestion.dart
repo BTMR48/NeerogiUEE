@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:neerogi/screens/Question/questionModel.dart';
 
 import '../../../model/user_model.dart';
+import '../../../utils/config.dart';
 import '../../home_screen.dart';
 
 class ViewOneQuestionsScreen extends StatefulWidget {
@@ -66,27 +67,68 @@ class _ViewOneQuestionsScreenState extends State<ViewOneQuestionsScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Column(
-        children: [
-          Text(oneQuestions!.question,
-              style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w500)),
-          TextField(
-            controller: sampledata1,
-            decoration: const InputDecoration(hintText: "question"),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(Config.app_background), fit: BoxFit.fill),
+        ),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(top: height * 0.2),
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Add Answers",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: Colors.black,
+
+                        decorationColor: Colors.redAccent,
+                        // fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )),
+              SizedBox(height: 45),
+              Text('Question : ' + oneQuestions!.question,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500)),
+              SizedBox(height: 45),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.1),
+                child: SizedBox(
+                  width: width * 0.9,
+                  child: TextField(
+                    controller: sampledata1,
+                    decoration: const InputDecoration(
+                      isDense: true,
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(),
+                      labelText: 'Add Answer',
+                      hintText: 'New question',
+                      prefixIcon: Icon(Icons.favorite),
+                      suffixIcon: Icon(Icons.query_builder),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  send();
+                },
+                child: const Text("submit"),
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              send();
-            },
-            child: const Text("submit"),
-          ),
-        ],
+        ),
       ),
     );
   }
