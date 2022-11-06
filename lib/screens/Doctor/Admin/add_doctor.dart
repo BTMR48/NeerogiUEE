@@ -7,20 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:neerogi/core/app_style.dart';
-import 'package:neerogi/screens/Articles/Admin/view_articles.dart';
+import 'package:neerogi/screens/Doctor/Admin/view_doctors.dart';
 
 import '../../../utils/config.dart';
 
-class AddArticleScreen extends StatefulWidget {
+class AddDoctorsScreen extends StatefulWidget {
   // the user id to create a image folder for a particular user
   String? userId;
-  AddArticleScreen({Key? key, this.userId}) : super(key: key);
+  AddDoctorsScreen({Key? key, this.userId}) : super(key: key);
 
   @override
-  State<AddArticleScreen> createState() => _AddArticleScreenState();
+  State<AddDoctorsScreen> createState() => _AddDoctorsScreenState();
 }
 
-class _AddArticleScreenState extends State<AddArticleScreen> {
+class _AddDoctorsScreenState extends State<AddDoctorsScreen> {
   // initialization code
   File? _image;
   final imagePicker = ImagePicker();
@@ -47,18 +47,18 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
     final postID = DateTime.now().millisecondsSinceEpoch.toString();
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     Reference ref =
-        FirebaseStorage.instance.ref().child("articles").child("post_$postID");
+        FirebaseStorage.instance.ref().child("doctors").child("post_$postID");
 
     await ref.putFile(_image!);
     downloadURL = await ref.getDownloadURL();
 
     //uploading to cloudfirestore
-    await firebaseFirestore.collection("articles").doc().set({
+    await firebaseFirestore.collection("doctors").doc().set({
       "topic": sampledata1.text,
       "description": sampledata2.text,
       'url': downloadURL
     }).whenComplete(
-        () => showSnackBar("Image uploaded successful", Duration(seconds: 2)));
+        () => showSnackBar("Doctor added successful", Duration(seconds: 2)));
   }
 
   TextEditingController sampledata1 = new TextEditingController();
@@ -116,7 +116,7 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const ViewArticlesScreens()),
+                  builder: (context) => const ViewDoctorsScreens()),
             );
           },
           child: Icon(
@@ -125,7 +125,7 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
           ),
         ),
         title: Text(
-          "Add Articles",
+          "Add Doctor",
           style: h2Style.copyWith(color: Color.fromARGB(255, 12, 63, 112)),
         ),
         iconTheme: IconThemeData(color: Colors.white),
@@ -143,7 +143,6 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   //for rounded rectange clip
-
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: SizedBox(
@@ -165,8 +164,8 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
                                       filled: true,
                                       fillColor: Colors.white,
                                       border: OutlineInputBorder(),
-                                      labelText: 'Add Topic',
-                                      hintText: 'New Topic',
+                                      labelText: 'Add Doctor Name',
+                                      hintText: 'Doctor Name',
                                       prefixIcon: Icon(Icons.favorite),
                                       suffixIcon: Icon(Icons.query_builder),
                                     ),
