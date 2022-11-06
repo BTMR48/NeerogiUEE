@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:neerogi/screens/Articles/Admin/view_articles.dart';
 import 'package:neerogi/core/app_style.dart';
+import 'package:neerogi/screens/Articles/User/view_articles.dart';
+
 import '../../../utils/config.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -17,14 +18,16 @@ class IntroScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const ViewArticlesScreens()),
+                MaterialPageRoute(
+                    builder: (_) => const ViewUserArticlesScreens()),
               );
             },
             style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry?>(
                 const EdgeInsets.all(8),
               ),
-              backgroundColor: MaterialStateProperty.all(Colors.blueAccent.withOpacity(0.6)),
+              backgroundColor:
+                  MaterialStateProperty.all(Colors.blueAccent.withOpacity(0.6)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25.0),
@@ -32,7 +35,8 @@ class IntroScreen extends StatelessWidget {
               ),
             ),
             icon: CircleAvatar(
-              backgroundColor: Color.fromARGB(255, 39, 76, 140).withOpacity(0.4),
+              backgroundColor:
+                  Color.fromARGB(255, 39, 76, 140).withOpacity(0.4),
               child: const Icon(Icons.arrow_back, color: Colors.white),
             ),
             label: Text(
@@ -62,12 +66,14 @@ class IntroScreen extends StatelessWidget {
                 const Spacer(flex: 1),
                 Text(
                   "ඔටිසම් පිළිබඳ දෙමව්පියන් ගේ දැනුම වර්ධනය",
-                  style: h1Style.copyWith(color: Color.fromARGB(255, 11, 11, 11)),
+                  style:
+                      h1Style.copyWith(color: Color.fromARGB(255, 11, 11, 11)),
                 ),
                 const SizedBox(height: 35),
                 Text(
                   "ඔටිසම් සහිත දරුවන් සිටින  දෙමාපියන්ට ඔටිසම් පිළිබඳව නිසි අවබෝධයක් තිබිය යුතුය.ලාංකික දෙමාපියන්ගෙ ඔටිසම් පිළිබදව දැනුම වර්ධනය කිරීම සඳහා ලිපි මාලාවක් මෙහි අන්තර්ගත වේ",
-                  style: h3Style.copyWith(color: Color.fromARGB(255, 10, 10, 10)),
+                  style:
+                      h3Style.copyWith(color: Color.fromARGB(255, 10, 10, 10)),
                 ),
                 const SizedBox(height: 40),
                 introButton(),
