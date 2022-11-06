@@ -6,7 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../core/res/color.dart';
 import '../utils/config.dart';
 import '../widgets/task_group.dart';
-import 'Articles/User/view_articles.dart';
+import 'Articles/ArticleIntroScreen.dart';
 import 'Doctor/User/view_user_doctors.dart';
 import 'Question/Parent/viewuserQuestion.dart';
 import 'ScreenTest/screenTest_screen.dart';
@@ -180,10 +180,8 @@ class _UserHomeState extends State<UserHome> {
           mainAxisCellCount: 1.3,
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ViewUserArticlesScreens()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => IntroScreen()));
             },
             child: TaskGroupContainer(
               color: Colors.green,
