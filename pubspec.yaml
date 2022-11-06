@@ -82,6 +82,10 @@ flutter:
     - images/au.png
     - images/ni.png
 
+    - images/background2.jpg
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
