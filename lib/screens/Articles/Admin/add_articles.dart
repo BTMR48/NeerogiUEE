@@ -1,10 +1,14 @@
 import 'dart:io';
-
+import 'package:neerogi/core/app_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:neerogi/screens/Articles/ArticleIntroScreen.dart';
 
 class AddArticleScreen extends StatefulWidget {
   // the user id to create a image folder for a particular user
@@ -66,75 +70,135 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Widget introButton() {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 100),
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: ElevatedButton(
+            onPressed: () {
+              send();
+            },
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry?>(
+                const EdgeInsets.all(15),
+              ),
+              backgroundColor:
+                  MaterialStateProperty.all(Colors.blueAccent.withOpacity(0.4)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+              ),
+            ),
+            child: const Text(
+              "Submit",
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromARGB(179, 27, 5, 84),
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
-      body: Column(
-        children: [
-          Center(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              //for rounded rectange clip
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: SizedBox(
-                  height: 550,
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      const Text("Upload Image"),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                          width: 320,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.red)),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: _image == null
-                                      ? const Center(
-                                          child: Text("No Image Selected"))
-                                      : Image.file(_image!),
-                                ),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      imagePickerMethod();
-                                    },
-                                    child: Text("Select Image")),
-                              ],
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: HexColor('#00FFFF').withOpacity(0.4),
+        automaticallyImplyLeading: false,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const IntroScreen()),
+            );
+          },
+          child: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: Color.fromARGB(255, 12, 63, 112),
+          ),
+        ),
+        title: Text(
+          "Add Articles",
+          style: h2Style.copyWith(color: Color.fromARGB(255, 12, 63, 112)),
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: Card(
+        child: Column(
+          children: [
+            Center(
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                //for rounded rectange clip
+      
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: SizedBox(
+                    height: 450,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            TextField(
+                              controller: sampledata1,
+                              decoration: const InputDecoration(hintText: "name"),
                             ),
-                          ),
+                            TextField(
+                              controller: sampledata2,
+                              decoration: const InputDecoration(hintText: "age"),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            Expanded(
+                              flex: 4,
+                              child: Container(
+                                width: 320,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        color: Color.fromARGB(255, 3, 35, 91))),
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            imagePickerMethod();
+                                          },
+                                          child: Text("Select Image",
+                                          style: h3Style.copyWith(color: Color.fromARGB(255, 223, 221, 220)))),
+                                      Expanded(
+                                        child: _image == null
+                                            ? const Center(
+                                                child: Text(""))
+                                            : Image.file(_image!),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          TextField(
-            controller: sampledata1,
-            decoration: const InputDecoration(hintText: "name"),
-          ),
-          TextField(
-            controller: sampledata2,
-            decoration: const InputDecoration(hintText: "age"),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              send();
-            },
-            child: const Text("submit"),
-          ),
-        ],
+            const SizedBox(
+              height: 30,
+            ),
+            introButton()
+          ],
+        ),
       ),
     );
   }

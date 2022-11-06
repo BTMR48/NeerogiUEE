@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:neerogi/screens/Articles/Admin/view_articles.dart';
-import '../../../core/app_style.dart';
 import '../articlesModel.dart';
 import 'package:neerogi/screens/Articles/ArticleIntroScreen.dart';
 class ViewOneArticleScreen extends StatefulWidget {
@@ -55,27 +53,32 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ViewArticlesScreens()),
+              MaterialPageRoute(builder: (context) => const IntroScreen()),
             );
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
-            color: Color.fromARGB(255, 12, 63, 112),
+            color:  Colors.white,
           ),
         ),
         title: Text(
-          "View one article",
-          style: h2Style.copyWith(color: Color.fromARGB(255, 12, 63, 112)),
+          'Book a Ticket',
+          style: GoogleFonts.dmSans(
+              textStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color:  Colors.white,
+          )),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color:  Colors.white),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(oneArticle!.topic,
+               Text(oneArticle!.topic,
                   style: const TextStyle(
-                      fontSize: 50,
+                      fontSize: 20,
                       color: Color.fromARGB(255, 12, 63, 112),
                       fontWeight: FontWeight.w500)),
                 const SizedBox(
@@ -83,7 +86,7 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
                   ),
               Image.network(
                 oneArticle!.url,
-                height: 350,
+                height: 30,
                 fit: BoxFit.cover,
               ),
                const SizedBox(
@@ -91,9 +94,10 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
                   ),
               Text(oneArticle!.description,
               style: const TextStyle(
-                      fontSize: 30,
+                      fontSize: 20,
                       color: Color.fromARGB(255, 12, 63, 112),
                       fontWeight: FontWeight.w500)),
+              
             ],
           ),
         ),
