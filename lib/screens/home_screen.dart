@@ -6,6 +6,7 @@ import 'package:neerogi/screens/recoder_screen.dart';
 import '../imageupload/image_upload.dart';
 import '../imageupload/show_upload.dart';
 import '../model/user_model.dart';
+import '../utils/config.dart';
 import 'Articles/Admin/add_articles.dart';
 import 'Articles/Admin/view_articles.dart';
 import 'Question/Admin/addQuestion.dart';
@@ -42,103 +43,109 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: 150,
-                child: Image.asset("images/logo.png", fit: BoxFit.contain),
-              ),
-              Text(
-                "Welcome Back",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text("${loggedInUser.firstName}${loggedInUser.secondName}",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w500)),
-              Text("${loggedInUser.email}",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w500)),
-              Text("${loggedInUser.uid}",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w500)),
-              SizedBox(
-                height: 15,
-              ),
-              ElevatedButton(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(Config.app_background2), fit: BoxFit.fill),
+        ),
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 150,
+                  child: Image.asset("images/logo.png", fit: BoxFit.contain),
+                ),
+                Text(
+                  "Welcome Back",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text("${loggedInUser.firstName}${loggedInUser.secondName}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w500)),
+                Text("${loggedInUser.email}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w500)),
+                Text("${loggedInUser.uid}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w500)),
+                SizedBox(
+                  height: 15,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ImageUpload(userId: loggedInUser.uid)));
+                    },
+                    child: Text("Upload Images")),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ShowUploads(userId: loggedInUser.uid)));
+                    },
+                    child: const Text("Show Articles  ")),
+                ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ImageUpload(userId: loggedInUser.uid)));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => RecorderScreen()));
                   },
-                  child: Text("Upload Images")),
-              ElevatedButton(
+                  child: const Text("Recorder"),
+                ),
+                ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ShowUploads(userId: loggedInUser.uid)));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AddArticleScreen()));
                   },
-                  child: const Text("Show Articles  ")),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => RecorderScreen()));
-                },
-                child: const Text("Recorder"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AddArticleScreen()));
-                },
-                child: Text('Add Articles'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ViewArticlesScreens()));
-                },
-                child: Text('ViewArticlesScreens'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ScreenTestScreen()));
-                },
-                child: Text('ScreenTestScreens'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ViewQuestionScreens()));
-                },
-                child: Text('questions'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AddQuestionScreen()));
-                },
-                child: Text('AddQuestionScreen'),
-              ),
-            ],
+                  child: Text('Add Articles'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ViewArticlesScreens()));
+                  },
+                  child: Text('ViewArticlesScreens'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ScreenTestScreen()));
+                  },
+                  child: Text('ScreenTestScreens'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ViewQuestionScreens()));
+                  },
+                  child: Text('questions'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AddQuestionScreen()));
+                  },
+                  child: Text('AddQuestionScreen'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
