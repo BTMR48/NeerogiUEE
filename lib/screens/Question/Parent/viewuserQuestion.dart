@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neerogi/screens/Question/Admin/addQuestion.dart';
 
 import '../../../utils/config.dart';
 import '../Parent/viewOneQuestion.dart';
 import '../questionModel.dart';
 
-class ViewQuestionScreens extends StatefulWidget {
-  const ViewQuestionScreens({Key? key}) : super(key: key);
+class ViewUserQuestionScreens extends StatefulWidget {
+  const ViewUserQuestionScreens({Key? key}) : super(key: key);
 
   @override
-  State<ViewQuestionScreens> createState() => _ViewQuestionScreensState();
+  State<ViewUserQuestionScreens> createState() =>
+      _ViewUserQuestionScreensState();
 }
 
-class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
+class _ViewUserQuestionScreensState extends State<ViewUserQuestionScreens> {
   @override
   Future<List<Questions>> fetchRecords() async {
     var records = await FirebaseFirestore.instance.collection('question').get();
@@ -54,6 +54,18 @@ class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Questions",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.black,
+
+                      decorationColor: Colors.redAccent,
+                      // fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   Row(
                     children: <Widget>[
                       Expanded(
@@ -68,40 +80,6 @@ class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    "Questions",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.black,
-
-                      decorationColor: Colors.redAccent,
-                      // fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddQuestionScreen()));
-                          },
-                          icon: Icon(
-                            Icons.add_circle_outline,
-                            color: Colors.blue[400],
-                          )),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 200),
-                            child: Text("Add a new question"),
-                          ))
                     ],
                   ),
                   SizedBox(

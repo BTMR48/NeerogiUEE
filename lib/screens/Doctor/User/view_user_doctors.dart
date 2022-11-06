@@ -1,32 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neerogi/screens/Question/Admin/addQuestion.dart';
+import 'package:neerogi/screens/Doctor/Admin/viewOne_doctor.dart';
 
 import '../../../utils/config.dart';
-import '../Parent/viewOneQuestion.dart';
-import '../questionModel.dart';
+import '../doctorsModel.dart';
 
-class ViewQuestionScreens extends StatefulWidget {
-  const ViewQuestionScreens({Key? key}) : super(key: key);
+class ViewUserDoctorsScreens extends StatefulWidget {
+  const ViewUserDoctorsScreens({Key? key}) : super(key: key);
 
   @override
-  State<ViewQuestionScreens> createState() => _ViewQuestionScreensState();
+  State<ViewUserDoctorsScreens> createState() => _ViewUserDoctorsScreensState();
 }
 
-class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
+class _ViewUserDoctorsScreensState extends State<ViewUserDoctorsScreens> {
   @override
-  Future<List<Questions>> fetchRecords() async {
-    var records = await FirebaseFirestore.instance.collection('question').get();
+  Future<List<Doctors>> fetchRecords() async {
+    var records = await FirebaseFirestore.instance.collection('doctors').get();
     return mapRecords(records);
   }
 
-  List<Questions> mapRecords(QuerySnapshot<Map<String, dynamic>> records) {
+  List<Doctors> mapRecords(QuerySnapshot<Map<String, dynamic>> records) {
     var _list = records.docs
         .map(
-          (questions) => Questions(
-            id: questions.id,
-            question: questions['question'],
+          (doctors) => Doctors(
+            id: doctors.id,
+            topic: doctors['topic'],
+            description: doctors['description'],
+            url: doctors['url'],
           ),
         )
         .toList();
@@ -72,7 +73,7 @@ class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    "Questions",
+                    "Doctors",
                     style: TextStyle(
                       fontSize: 24.0,
                       color: Colors.black,
@@ -82,38 +83,16 @@ class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddQuestionScreen()));
-                          },
-                          icon: Icon(
-                            Icons.add_circle_outline,
-                            color: Colors.blue[400],
-                          )),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 200),
-                            child: Text("Add a new question"),
-                          ))
-                    ],
-                  ),
                   SizedBox(
                       width: width * 0.94,
                       height: height * 0.95,
-                      child: FutureBuilder<List<Questions>>(
+                      child: FutureBuilder<List<Doctors>>(
                           future: fetchRecords(),
                           builder: (context, snapshot) {
                             if (snapshot.hasError) {
                               return Text('Error: ${snapshot.error}');
                             } else {
-                              List<Questions> data = snapshot.data ?? [];
+                              List<Doctors> data = snapshot.data ?? [];
 
                               return ListView.builder(
                                   itemCount: data.length,
@@ -132,25 +111,26 @@ class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
                                         child: Column(
                                           children: <Widget>[
                                             ListTile(
-                                                title:
-                                                    Text(data[index].question),
-                                                trailing: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 30),
-                                                  child: ElevatedButton(
-                                                    child: Text('View'),
-                                                    onPressed: () {
-                                                      Navigator.of(context).push(
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  ViewOneQuestionsScreen(
-                                                                    id: data[
-                                                                            index]
-                                                                        .id,
-                                                                  )));
-                                                    },
-                                                  ),
+                                                leading: Image.network(
+                                                  data[index].url,
+                                                  height: 30,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                title: Text(data[index].topic),
+                                                subtitle: Text(
+                                                    data[index].description),
+                                                trailing: ElevatedButton(
+                                                  child: Text('View'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).push(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                ViewOneDoctorsScreen(
+                                                                  id: data[
+                                                                          index]
+                                                                      .id,
+                                                                )));
+                                                  },
                                                 ))
                                           ],
                                         ),

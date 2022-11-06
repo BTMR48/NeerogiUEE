@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../utils/config.dart';
-import '../home_screen.dart';
+import '../UserHome.dart';
 
 class MarksScreen extends StatefulWidget {
   final int marks;
@@ -136,7 +136,7 @@ class _MarksScreenState extends State<MarksScreen> {
                                       Navigator.of(context).pushReplacement(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  HomeScreen()));
+                                                  UserHome()));
                                     },
                                     child: Text("ස්තූතියී.."),
                                   ),

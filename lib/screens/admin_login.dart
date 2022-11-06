@@ -2,20 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:neerogi/screens/registration.dart';
+import 'package:neerogi/screens/login.dart';
 
 import '../utils/config.dart';
-import 'UserHome.dart';
-import 'admin_login.dart';
+import 'admin_home.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class AdminLogin extends StatefulWidget {
+  const AdminLogin({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<AdminLogin> createState() => _AdminLoginState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _AdminLoginState extends State<AdminLogin> {
   //form key
   final _formKey = GlobalKey<FormState>();
   //editing controller
@@ -24,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   //firebase
   final _auth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
     //email field
@@ -141,43 +139,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       passwordField,
                       SizedBox(height: 35),
                       loginButton,
-                      SizedBox(height: 10),
+                      SizedBox(height: 15),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text("Don't have an account ? ",
-                              style: TextStyle(color: Colors.black)),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          RegistrationScreen()));
-                            },
-                            child: const Text(
-                              "SignUp",
-                              style: TextStyle(
-                                  color: Colors.redAccent,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("Not Admin",
+                                style: TextStyle(color: Colors.black)),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()));
+                              },
+                              child: const Text(
+                                "SignUp",
+                                style: TextStyle(
+                                    color: Colors.redAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AdminLogin()));
-                        },
-                        child: Text(
-                          "Are you Admin?",
-                          style: TextStyle(
-                              color: Colors.redAccent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                      ),
+                          ]),
                     ],
                   ),
                 ),
@@ -197,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Login Successful"),
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => UserHome())),
+                    MaterialPageRoute(builder: (context) => AdminHomeScreen())),
               })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
