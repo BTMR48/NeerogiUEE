@@ -107,7 +107,7 @@ class _ViewOneDoctorsScreenState extends State<ViewOneDoctorsScreen> {
 
   void delete() {
     final id = widget.id;
-    FirebaseFirestore.instance.doc('articles/$id').delete().whenComplete(() =>
+    FirebaseFirestore.instance.doc('doctors/$id').delete().whenComplete(() =>
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ViewDoctorsScreens())));
   }

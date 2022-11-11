@@ -110,62 +110,66 @@ class _ViewArticlesScreensState extends State<ViewArticlesScreens> {
                           ))
                     ],
                   ),
-                  SizedBox(
-                      width: width * 0.94,
-                      height: height * 0.95,
-                      child: FutureBuilder<List<Articles>>(
-                          future: fetchRecords(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasError) {
-                              return Text('Error: ${snapshot.error}');
-                            } else {
-                              List<Articles> data = snapshot.data ?? [];
+                  Scrollbar(
+                    isAlwaysShown: true,
+                    child: SizedBox(
+                        width: width * 0.94,
+                        height: height * 0.7,
+                        child: FutureBuilder<List<Articles>>(
+                            future: fetchRecords(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else {
+                                List<Articles> data = snapshot.data ?? [];
 
-                              return ListView.builder(
-                                  itemCount: data.length,
-                                  itemBuilder: (context, index) {
-                                    return (SizedBox(
-                                      height: 100,
-                                      child: Card(
-                                        color: Colors.white.withOpacity(0.8),
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                            color: Colors.greenAccent,
+                                return ListView.builder(
+                                    itemCount: data.length,
+                                    itemBuilder: (context, index) {
+                                      return (SizedBox(
+                                        height: 100,
+                                        child: Card(
+                                          color: Colors.white.withOpacity(0.8),
+                                          shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              color: Colors.greenAccent,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
+                                          child: Column(
+                                            children: <Widget>[
+                                              ListTile(
+                                                  leading: Image.network(
+                                                    data[index].url,
+                                                    height: 30,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  title:
+                                                      Text(data[index].topic),
+                                                  // subtitle: Text(
+                                                  //     data[index].description),
+                                                  trailing: ElevatedButton(
+                                                    child: Text('View'),
+                                                    onPressed: () {
+                                                      Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  ViewOneArticleScreen(
+                                                                    id: data[
+                                                                            index]
+                                                                        .id,
+                                                                  )));
+                                                    },
+                                                  ))
+                                            ],
+                                          ),
                                         ),
-                                        child: Column(
-                                          children: <Widget>[
-                                            ListTile(
-                                                leading: Image.network(
-                                                  data[index].url,
-                                                  height: 30,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                                title: Text(data[index].topic),
-                                                subtitle: Text(
-                                                    data[index].description),
-                                                trailing: ElevatedButton(
-                                                  child: Text('View'),
-                                                  onPressed: () {
-                                                    Navigator.of(context).push(
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                ViewOneArticleScreen(
-                                                                  id: data[
-                                                                          index]
-                                                                      .id,
-                                                                )));
-                                                  },
-                                                ))
-                                          ],
-                                        ),
-                                      ),
-                                    ));
-                                  });
-                            }
-                          }))
+                                      ));
+                                    });
+                              }
+                            })),
+                  )
                 ],
               ),
             ),

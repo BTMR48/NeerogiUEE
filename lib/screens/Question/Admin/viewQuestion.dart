@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neerogi/screens/Question/Admin/addQuestion.dart';
+import 'package:neerogi/screens/Question/Admin/viewOneAdminQuestion.dart';
 
 import '../../../utils/config.dart';
-import '../Parent/viewOneQuestion.dart';
 import '../questionModel.dart';
 
 class ViewQuestionScreens extends StatefulWidget {
@@ -144,7 +144,7 @@ class _ViewQuestionScreensState extends State<ViewQuestionScreens> {
                                                       Navigator.of(context).push(
                                                           MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  ViewOneQuestionsScreen(
+                                                                  ViewOneAdminQuestionsScreen(
                                                                     id: data[
                                                                             index]
                                                                         .id,

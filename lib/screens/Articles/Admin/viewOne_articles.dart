@@ -73,7 +73,7 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
                   width: width * 0.8,
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 200,
                   width: 300,
                   child: Card(
                     color: Colors.white.withOpacity(0.8),

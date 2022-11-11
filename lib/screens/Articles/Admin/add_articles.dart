@@ -57,8 +57,11 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
       "topic": sampledata1.text,
       "description": sampledata2.text,
       'url': downloadURL
-    }).whenComplete(
-        () => showSnackBar("Image uploaded successful", Duration(seconds: 2)));
+    }).whenComplete(() => {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => ViewArticlesScreens())),
+          showSnackBar("Image uploaded successful", Duration(seconds: 2))
+        });
   }
 
   TextEditingController sampledata1 = new TextEditingController();
