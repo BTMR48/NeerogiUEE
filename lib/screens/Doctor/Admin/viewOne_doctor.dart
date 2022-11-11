@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neerogi/screens/Doctor/Admin/view_doctors.dart';
 
 import '../../../utils/config.dart';
 import '../doctorsModel.dart';
@@ -89,12 +90,31 @@ class _ViewOneDoctorsScreenState extends State<ViewOneDoctorsScreen> {
                     ),
                   ),
                 ),
+                ElevatedButton(
+                    onPressed: delete,
+                    child: Text(
+                      "Delete",
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                    ))
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void delete() {
+    final id = widget.id;
+    FirebaseFirestore.instance.doc('articles/$id').delete().whenComplete(() =>
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ViewDoctorsScreens())));
+  }
+
+  showSnackBar(String snackText, Duration d) {
+    final snackBar = SnackBar(content: Text(snackText), duration: d);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 //
 }
