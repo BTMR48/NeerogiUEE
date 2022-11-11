@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neerogi/screens/Doctor/Admin/viewOne_doctor.dart';
+import 'package:neerogi/screens/Doctor/User/viewOne_user_doctor.dart';
 
 import '../../../utils/config.dart';
 import '../doctorsModel.dart';
@@ -125,7 +125,7 @@ class _ViewUserDoctorsScreensState extends State<ViewUserDoctorsScreens> {
                                                     Navigator.of(context).push(
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                ViewOneDoctorsScreen(
+                                                                ViewOneUserDoctorsScreen(
                                                                   id: data[
                                                                           index]
                                                                       .id,

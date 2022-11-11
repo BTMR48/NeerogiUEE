@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neerogi/screens/Articles/Admin/viewOne_articles.dart';
+import 'package:neerogi/screens/Articles/User/viewOne_articles.dart';
 
 import '../../../utils/config.dart';
 import '../articlesModel.dart';
@@ -126,7 +126,7 @@ class _ViewUserArticlesScreensState extends State<ViewUserArticlesScreens> {
                                                     Navigator.of(context).push(
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                ViewOneArticleScreen(
+                                                                ViewOneUserArticleScreen(
                                                                   id: data[
                                                                           index]
                                                                       .id,

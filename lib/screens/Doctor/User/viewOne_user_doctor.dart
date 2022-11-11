@@ -1,21 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neerogi/screens/Articles/Admin/view_articles.dart';
 
 import '../../../utils/config.dart';
-import '../articlesModel.dart';
+import '../doctorsModel.dart';
 
-class ViewOneArticleScreen extends StatefulWidget {
-  const ViewOneArticleScreen({Key? key, required this.id}) : super(key: key);
+class ViewOneUserDoctorsScreen extends StatefulWidget {
+  const ViewOneUserDoctorsScreen({Key? key, required this.id})
+      : super(key: key);
   final String id;
 
   @override
-  State<ViewOneArticleScreen> createState() => _ViewOneArticleScreenState();
+  State<ViewOneUserDoctorsScreen> createState() =>
+      _ViewOneUserDoctorsScreenState();
 }
 
-class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
-  Articles? oneArticle;
+class _ViewOneUserDoctorsScreenState extends State<ViewOneUserDoctorsScreen> {
+  Doctors? oneDoctors;
   bool loading = false;
 
   @override
@@ -27,14 +28,14 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
 
   Future<void> getArticle() async {
     final id = widget.id;
-    final reference = FirebaseFirestore.instance.doc('articles/$id');
+    final reference = FirebaseFirestore.instance.doc('doctors/$id');
     final snapshot = reference.get();
 
     final result = await snapshot.then(
-        (snap) => snap.data() == null ? null : Articles.fromJson(snap.data()!));
+        (snap) => snap.data() == null ? null : Doctors.fromJson(snap.data()!));
     print('result is ====> $result');
     setState(() {
-      oneArticle = result;
+      oneDoctors = result;
       loading = false;
     });
   }
@@ -55,7 +56,7 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
             child: Column(
               children: [
                 Text(
-                  oneArticle!.topic,
+                  oneDoctors!.topic,
                   style: TextStyle(
                     fontSize: 24.0,
                     color: Colors.black,
@@ -68,7 +69,7 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
                   height: 1,
                 ),
                 Image.network(
-                  oneArticle!.url,
+                  oneDoctors!.url,
                   height: 350,
                   width: width * 0.8,
                 ),
@@ -84,19 +85,12 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: Center(
-                      child: Text(oneArticle!.description,
+                      child: Text(oneDoctors!.description,
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w600)),
                     ),
                   ),
                 ),
-                ElevatedButton(
-                    onPressed: delete,
-                    child: Text(
-                      "Delete",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ))
               ],
             ),
           ),
@@ -104,16 +98,5 @@ class _ViewOneArticleScreenState extends State<ViewOneArticleScreen> {
       ),
     );
   }
-
-  void delete() {
-    final id = widget.id;
-    FirebaseFirestore.instance.doc('articles/$id').delete().whenComplete(() =>
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ViewArticlesScreens())));
-  }
-
-  showSnackBar(String snackText, Duration d) {
-    final snackBar = SnackBar(content: Text(snackText), duration: d);
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+//
 }
