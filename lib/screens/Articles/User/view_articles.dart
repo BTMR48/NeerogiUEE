@@ -49,7 +49,7 @@ class _ViewUserArticlesScreensState extends State<ViewUserArticlesScreens> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Config.app_background), fit: BoxFit.fill),
+              image: AssetImage(Config.article_background), fit: BoxFit.fill),
         ),
         child: SafeArea(
           child: Center(

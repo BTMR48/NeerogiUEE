@@ -49,7 +49,7 @@ class _ViewOneUserArticleScreenState extends State<ViewOneUserArticleScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Config.app_background), fit: BoxFit.fill),
+              image: AssetImage(Config.article_background), fit: BoxFit.fill),
         ),
         child: Center(
           child: SingleChildScrollView(
