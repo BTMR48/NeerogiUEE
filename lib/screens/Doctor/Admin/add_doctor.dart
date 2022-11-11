@@ -146,7 +146,7 @@ class _AddDoctorsScreenState extends State<AddDoctorsScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: SizedBox(
-                      height: 450,
+                      height: 320,
                       width: double.infinity,
                       child: Padding(
                         padding: const EdgeInsets.all(25.0),
@@ -154,7 +154,7 @@ class _AddDoctorsScreenState extends State<AddDoctorsScreen> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(top: height * 0.1),
+                                padding: EdgeInsets.only(top: 0),
                                 child: SizedBox(
                                   width: width * 0.9,
                                   child: TextField(
@@ -192,7 +192,7 @@ class _AddDoctorsScreenState extends State<AddDoctorsScreen> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 40,
+                                height: 30,
                               ),
                               Expanded(
                                 flex: 4,

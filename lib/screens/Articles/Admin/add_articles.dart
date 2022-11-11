@@ -150,7 +150,7 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: SizedBox(
-                      height: 450,
+                      height: 320,
                       width: double.infinity,
                       child: Padding(
                         padding: const EdgeInsets.all(25.0),
@@ -158,7 +158,7 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(top: height * 0.1),
+                                padding: EdgeInsets.only(top: 0),
                                 child: SizedBox(
                                   width: width * 0.9,
                                   child: TextField(
@@ -177,7 +177,7 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: height * 0.1),
+                                padding: EdgeInsets.only(top: 10),
                                 child: SizedBox(
                                   width: width * 0.9,
                                   child: TextField(
@@ -196,7 +196,7 @@ class _AddArticleScreenState extends State<AddArticleScreen> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 40,
+                                height: 30,
                               ),
                               Expanded(
                                 flex: 4,
